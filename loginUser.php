@@ -37,9 +37,9 @@
               $errp="Invalid username or password";
             }
         }
-        if($_SESSION['username'] && $_SESSION['balance']){
-          header('location: homepage/home/home.php');
-        }
+        // if($_SESSION['username'] && $_SESSION['balance']){
+        //   header('location: homepage/home/home.php');
+        // }
 
     ?>
   <div class="bg-pink-300 mx-auto my-20 rounded-3xl p-4 w-1/3">
@@ -55,7 +55,7 @@
           <input type="password" class="p-2 text-lg text-black rounded-lg w-full" name="password" placeholder="Password" required>
          </div>
           <!-- <?php echo $username; ?>"><input type="submit" class="submit" name="submit" value="Log In"></a> -->
-          <button type="submit" class="bg-blue-500 p-3 rounded-lg w-96 mx-8 mt-4 text-white">Login Now</button>
+          <button type="submit" class="bg-blue-500 p-3 rounded-lg w-96 mx-8 mt-4 text-white"> <a href="homepage.php">Login Now</a></button>
           <span><?php echo $errp ?></span>
          <p class="m-12 mx-14">Does not have an account? <a href="signupUser.php" class="text-blue-500">SignUp Now</a></p>
         </form>
