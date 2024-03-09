@@ -7,28 +7,9 @@
   <title>Homepage</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<!-- <body>
-    <header class="bg-black">
-      <nav class="flex justify-between mx-10">
-        <a href="homepage.php"><img src="https://t4.ftcdn.net/jpg/05/36/24/13/360_F_536241340_GsrsNhcWC0hyTVaJLilNafyDw6fl0cC8.jpg" class="w-20 bg-emerald-700 " alt=""></a>
-         <ul class="flex gap-20 p-4 text-white text-lg rounded-2xl">
-        <li ><a href="" class="hover:text-red-600">Home</a></li> 
-        <li ><a href="" class="hover:text-red-600">About Us</a></li>
-         <li ><a href="" class="hover:text-red-600">Contact Us</a></li>
-        </ul>
-        <a href="logoutAdmin.php"><button class="bg-red-600 px-4 h-10 mt-2 rounded-lg text-white hover:bg-blue-600">Logout</button></a>
-      </nav>
-    </header>
-    
-    <div>
-        <img src="https://img.freepik.com/free-vector/smartphone-mockup-colorful-design-concept-gradient-with-flares-realistic_1284-62286.jpg" class="w-dvw bg-cover h-dvh" alt="">
-    </div>
-</body> -->
 
 <body class="bg-gray-100">
-
   <div class="flex h-screen">
-
     <!-- Sidebar -->
     <div class="bg-indigo-900 text-white w-64 flex flex-col">
       <div class="p-4 border-b border-gray-700">
@@ -40,8 +21,12 @@
         <a href="mobile_products.php">
           <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Mobiles</li>
         </a>
-        <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Orders</li>
-        <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Customers</li>
+        <a href="orders.php">
+          <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Orders</li>
+        </a>
+        <a href="customer.php">
+          <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Customers</li>
+        </a>
         <!-- Add more sidebar links as needed -->
       </ul>
       <div class="p-4 border-t border-gray-700">
@@ -64,38 +49,37 @@
       <button id="openFormBtn" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Mobile Product</button>
 
       <div class="container mx-auto p-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <?php
-        // Include database connection
-        $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <?php
+          // Include database connection
+          $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
 
-        // Fetch all mobile products from the database
-        $sql = "SELECT * FROM mobile_product";
-        $result = mysqli_query($conn, $sql);
+          // Fetch all mobile products from the database
+          $sql = "SELECT * FROM mobile_product";
+          $result = mysqli_query($conn, $sql);
 
-        // Display mobile products in card format
-        if (mysqli_num_rows($result) > 0) {
-          while ($row = mysqli_fetch_assoc($result)) {
-        ?>
-            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-              <img src="uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['model']; ?>" class="w-full">
-              <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2"><?php echo $row['model']; ?></div>
-                <p class="text-gray-700 text-base"><?php echo $row['brand']; ?></p>
-                <p class="text-gray-700 text-base">$<?php echo $row['price']; ?></p>
+          // Display mobile products in card format
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+          ?>
+              <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+                <img src="products/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['model']; ?>" class="w-full">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2"><?php echo $row['model']; ?></div>
+                  <p class="text-gray-700 text-base"><?php echo $row['brand']; ?></p>
+                  <p class="text-gray-700 text-base">$<?php echo $row['price']; ?></p>
+                </div>
               </div>
-            </div>
-        <?php
+          <?php
+            }
+          } else {
+            echo '<p>No mobile products found.</p>';
           }
-        } else {
-          echo '<p>No mobile products found.</p>';
-        }
-
-        // Close database connection
-        mysqli_close($conn);
-        ?>
+          // Close database connection
+          mysqli_close($conn);
+          ?>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- Pop-up form -->

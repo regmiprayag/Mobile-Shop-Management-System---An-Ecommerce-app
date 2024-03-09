@@ -52,8 +52,8 @@
                         <th class="px-4 py-2">Model</th>
                         <th class="px-4 py-2">Brand</th>
                         <th class="px-4 py-2">Price</th>
-                        <th class="px-4 py-2">Description</th>
-                        <th class="px-4 py-2">Actions</th>
+                        <th class="px-4 py-2">Storage</th>
+                        <th class="px-4 py-2">RAM</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,8 +78,8 @@
                             echo '<td class="border px-4 py-2">' . $row['storage'] . ' GB</td>';
                             echo '<td class="border px-4 py-2">' . $row['ram'] . ' GB</td>';
                             echo '<td class="border px-4 py-2">';
-                            echo '<a href="edit_mobile_product.php?id=' . $row['id'] . '" class="bg-blue-500 text-white px-3 py-1 rounded-lg mr-2">Edit</a>';
-                            echo '<a href="delete_mobile_product.php?id=' . $row['id'] . '" class="bg-red-500 text-white px-3 py-1 rounded-lg">Delete</a>';
+                            echo '<a href="./products/edit_mobile_product.php?id=' . $row['id'] . '" class="bg-blue-500 text-white px-3 py-1 rounded-lg mr-2">Edit</a>';
+                            echo '<a href="./products/delete_mobile_product.php?id=' . $row['id'] . '" class="bg-red-500 text-white px-3 py-1 rounded-lg">Delete</a>';
                             echo '</td>';
                             echo '</tr>';
                         }

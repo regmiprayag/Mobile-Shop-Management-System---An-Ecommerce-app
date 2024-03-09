@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // File upload
         $targetDir = "uploads/";
-        
+
         $fileName = basename($_FILES["image"]["name"]);
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql = "INSERT INTO mobile_product (model, brand, price, storage, ram, image) VALUES ('$model', '$brand', '$price', '$storage', '$ram', '$fileName')";
                 if (mysqli_query($conn, $sql)) {
                     echo "Mobile product inserted successfully.";
+                    header('location: ../homepage.php');
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                 }
