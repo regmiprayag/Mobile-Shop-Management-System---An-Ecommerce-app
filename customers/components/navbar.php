@@ -29,8 +29,8 @@
                     <a class="text-white text-xl font-bold hover:text-gray-300" href="#">Mobile Store</a>
                 </div>
                 <div class="hidden md:flex md:items-center md:space-x-4 gap-4">
-                    <a class="text-gray-300 hover:text-white" href="#">Home</a>
-                    <a class="text-gray-300 hover:text-white" href="#">Mobiles</a>
+                    <a class="text-gray-300 hover:text-white" href="../homepage.php">Home</a>
+                    <a class="text-gray-300 hover:text-white" href="../mobiles.php">Mobiles</a>
                     <a class="text-gray-300 hover:text-white" href="#">Orders</a>
                     <a class="text-gray-300 hover:text-white" href="#">Profile</a>
                     <div class="bg-gray-400">

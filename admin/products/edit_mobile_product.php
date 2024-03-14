@@ -15,7 +15,6 @@
     $id = $_GET['id'];
     $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
     if (isset($_POST['submit'])) {
-        echo "Hello";
         $model = $_POST['model'];
         $brand = $_POST['brand'];
         $price = $_POST['price'];
@@ -23,40 +22,41 @@
         $RAM = $_POST['RAM'];
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
-            // Check if a file is uploaded
-            if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 // Get file details
                 $file_name = $_FILES['image']['name'];
                 $file_tmp = $_FILES['image']['tmp_name'];
                 $file_size = $_FILES['image']['size'];
                 $file_type = $_FILES['image']['type'];
+        
+                $allowed_extensions = array('jpg', 'jpeg', 'png');
+                $file_extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                if (!in_array($file_extension, $allowed_extensions)) {
+                    echo "Error: Only JPG, JPEG, and PNG files are allowed.";
+                    exit; // Stop further execution
+                }
 
                 // Set new image path
                 $new_image_path = 'uploads/' . $file_name;
 
                 // Move uploaded file to the new location
                 if (move_uploaded_file($file_tmp, $new_image_path)) {
-                    // Delete the previous image file
-                    // if (file_exists($d['image'])) {
-                    //     unlink($d['image']);
-                    // }
                     // Update the database with the new image path
                     $sql = "UPDATE mobile_product 
-                            SET model='$model', brand='$brand', price='$price', storage='$storage', RAM='$RAM', image='$new_image_path'
+                            SET model='$model', brand='$brand', price='$price', storage='$storage', RAM='$RAM', image='$file_name'
                             WHERE id='$id'";
-
+        
                     mysqli_query($conn, $sql);
-
+        
                     if (mysqli_affected_rows($conn) == 1) {
-                        header('location: edit_mobile_product.php');
+                        header('location: ../homepage.php');
+                        exit; // Add an exit after redirection to stop executing the rest of the script
                     } else {
                         echo "Sorry could not update";
                     }
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                 }
-            } else {
-                echo "Error uploading file: " . $_FILES['image']['error'];
             }
         } else {
             echo "Image is empty";
@@ -127,7 +127,7 @@
                         <label for="image" class="block text-gray-700 font-bold mb-2">Image:</label>
                         <input type="file" id="image" name="image" src='<?php echo $d['image']; ?>' class="border rounded w-full py-2 px-3" accept="image/*">
                     </div> -->
-                    <div class="flex">
+                    <!-- <div class="flex">
                         <div class="mb-4">
                             <label for="image" class="block text-gray-700 font-bold mb-2">Current Image:</label>
                             <img src="uploads/<?php echo $d['image']; ?>" alt="Current Image" class="mb-2 h-20" style="max-width: 200px;">
@@ -136,7 +136,18 @@
                             <label for="image" class="block text-gray-700 font-bold mb-2">Image:</label>
                             <input type="file" id="image" name="image" class="border rounded w-full py-2 px-3" accept="image/*">
                         </div>
+                    </div> -->
+                    <div class="flex">
+                        <div class="mb-4">
+                            <label for="image" class="block text-gray-700 font-bold mb-2">Current Image:</label>
+                            <img src="uploads/<?php echo $d['image']; ?>" alt="Current Image" class="mb-2 h-20" style="max-width: 200px;">
+                        </div>
+                        <div class="mb-4">
+                            <label for="image" class="block text-gray-700 font-bold mb-2">New Image:</label>
+                            <input type="file" id="image" name="image" class="border rounded w-full py-2 px-3" accept="image/*" value="">
+                        </div>
                     </div>
+
                     <div class="flex justify-between gap-4">
                         <button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Save Changes
