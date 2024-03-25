@@ -32,6 +32,7 @@
 
       if(is_array($row)){
         $_SESSION['email']=$row['email'];
+        $_SESSION['customer_id'] = $row['id'];
       }
       else{
         $errp="Invalid username or password";

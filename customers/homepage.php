@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="bg-gray-100">
@@ -44,11 +45,15 @@
                     echo '<p class="text-center text-xl">' . $row['model'] . '</p>';
                     echo '<p class="text-center">' .'$ '. $row['price'] . '</p>';
                     // echo '<p class="text-center">' . $row['model'] . '</p>';
-                    echo '<div class="mt-4">';
-                    if(isset($_SESSION['email'])) {
+                    echo '<div class="mt-4 w-full flex">';
+                    if(isset($_SESSION['email'])) { 
                         // User is logged in
                         // echo '<a href="./products/edit_mobile_product.php?id=' . $row['id'] . '" class="bg-blue-500 text-white px-3 py-1 rounded-lg mr-2">Edit</a>';
-                        echo '<a href="booking/bookings.php?id='.$row['id'].' "><button class="w-full text-gray-300 bg-blue-600 px-6 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
+                        // echo "";
+                        // echo '<a href="booking/cart.php?id='.$row['id'].' "><i class="fa fa-shopping-cart" style="font-size:24px">Add To Cart</i></a>';
+                        
+                        echo '<a href="cart/cart.php?id='.$row['id'].' "><button class="bg-gray-800 text-gray-200 px-6 mr-2 w-36 p-2 hover:bg-red-800">Add To Cart</button></a>';
+                        echo '<a href="booking/bookings.php?id='.$row['id'].' "><button class="bg-blue-600 text-gray-100 px-6 w-32 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
                     } else {
                         // User is not logged in, redirect to login page
                         echo '<a href="loginCustomer.php"><button class="w-full text-gray-300 bg-blue-600 px-6 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
