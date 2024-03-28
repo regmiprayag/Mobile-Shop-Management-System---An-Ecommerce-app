@@ -8,20 +8,6 @@
 </head>
 
 <body>
-
-    <?php
-    // Check if the user is logged in (you might have a session variable set for this purpose)
-    // $isLoggedIn = isset($_SESSION['email']);
-
-    // // Display the logout button if the user is logged in
-    // if ($isLoggedIn) {
-    //     echo '<a href="logout.php">Logout</a>';
-    // } else {
-    //     // Display login button or login form if the user is not logged in
-    //     echo '<a href="login.php">Login</a>';
-    // }
-    ?>
-
     <nav class="bg-gray-800 shadow-md">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
@@ -33,11 +19,15 @@
                     <a class="text-gray-300 hover:text-white" href="../mobiles.php">Mobiles</a>
                     <a class="text-gray-300 hover:text-white" href="#">Orders</a>
                     <a class="text-gray-300 hover:text-white" href="#">Profile</a>
-                    <div class="bg-gray-400">
+                    <div class="">
                         <?php
                             $isLoggedIn = isset($_SESSION['email']);
                             if ($isLoggedIn) {
-                                echo '<a href="logoutCustomer.php" class="bg-red-700 px-6 p-2 rounded-lg hover:bg-red-800"><button class="text-gray-300">Logout</button></a>';
+                                ?>
+                                  <!-- <a href="cart/cart.php" class="bg-red-700 px-6 p-2 rounded-lg hover:bg-red-800"><button class="text-gray-300">See Cart</button></a> -->
+                                  <a href="cart/cart.php" class="bg-blue-600 px-6 p-2 rounded-lg hover:bg-blue-800"><button class="text-gray-300">Cart<i class="fa fa-shopping-cart ml-2"></i></button></a>
+                                  <a href="logoutCustomer.php" class="bg-red-700 px-6 p-2 rounded-lg hover:bg-red-800"><button class="text-gray-300">Logout</button></a>
+                                <?php
                             } 
                             else {
                                 // Display login button or login form if the user is not logged in

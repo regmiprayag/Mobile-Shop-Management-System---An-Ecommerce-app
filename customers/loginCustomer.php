@@ -59,9 +59,6 @@
                 <button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="button">Log In</button>
                 <span class="flex justify-center"><?php echo $errp ?></span>
             </form>
-            <!-- <p class="text-center text-gray-600 text-xs">
-                <a class="hover:underline" href="#">Forgot Password?</a>
-            </p> -->
             <p class="text-center text-gray-600 text-sm mt-3">
                 Don't have an account? <a class="hover:underline text-blue-600" href="#">Sign Up</a>
             </p>

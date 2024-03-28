@@ -56,7 +56,8 @@
                         echo '<a href="booking/bookings.php?id='.$row['id'].' "><button class="bg-blue-600 text-gray-100 px-6 w-32 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
                     } else {
                         // User is not logged in, redirect to login page
-                        echo '<a href="loginCustomer.php"><button class="w-full text-gray-300 bg-blue-600 px-6 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
+                        // echo '<a href="loginCustomer.php"><button class="w-full text-gray-300 bg-blue-600 px-6 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
+                        echo '<a href="loginCustomer.php"><button onclick="myFunction()" class="w-full text-gray-300 bg-blue-600 px-6 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>';
                     }
                     echo '</div>';
                     echo '</div>';
@@ -74,5 +75,14 @@
     <?php
         include 'components/footer.php';
     ?>
+
+<script>
+    // function myFunction() {
+    //     // Your JavaScript code here
+    //     alert("Button clicked!");
+    // }
+</script>
+
+
 </body>
 </html>

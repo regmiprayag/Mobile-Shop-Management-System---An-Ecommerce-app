@@ -42,11 +42,16 @@
     $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
     // $_SESSION['orderId'];
     $orderId = $_SESSION['orderDetailsId'];
-    $sql1 = "SELECT * FROM orders WHERE order_id='$orderId'";
-    $result = mysqli_query($conn, $sql);
+    if(!$orderId){
+        // break;
+        header('location: homepage.php');
+    }
+    $sql1 = "SELECT * FROM orderDetails WHERE order_id='$orderId'";
+    $result = mysqli_query($conn, $sql1);
 
     // Display mobile products
     if (mysqli_num_rows($result) > 0) {
+        // echo "hello prayag";
         $row = mysqli_fetch_assoc($result);
 
         // Extract data from the fetched row
@@ -62,6 +67,14 @@
         $insert_query = "INSERT INTO orders (customer_name, customer_address, customer_city, customer_phone, product_id, product_model, product_price, order_date)
                      VALUES ('$customer_name', '$customer_address', '$customer_city', '$customer_phone', $product_id, '$product_model', $product_price, CURRENT_TIMESTAMP)";
 
+        $sql2 = "DELETE FROM orderDetails WHERE order_Id = $orderId";
+
+        if (mysqli_query($conn, $sql2)) {
+            // Row deleted successfully
+            unset($_SESSION['orderDetailsId']);
+        } else {
+            echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+        }
         // Execute the INSERT query
         if (mysqli_query($conn, $insert_query)) {
             // New row inserted successfully
@@ -69,20 +82,6 @@
             echo "Error: " . $insert_query . "<br>" . mysqli_error($conn);
         }
     }
-
-
-    // $sql1 = "INSERT INTO orders (customer_name, customer_address, customer_city, customer_phone, product_id, product_model, product_price, order_date)
-    // VALUES ('$full_name', '$address', '$city', '$phone', $product_id, '$product_model', $price, CURRENT_TIMESTAMP)";
-
-    // if (mysqli_query($conn, $sql1)) {
-    //     // echo "Mobile product inserted successfully.";
-    //     $orderDetailsId = mysqli_insert_id($conn);
-    //     $_SESSION['orderDetailsId'] = $orderDetailsId;
-    //     header('location: esewa.php?amount='.$row['price']);
-    //     // header('location: https://rc-epay.esewa.com.np/api/epay/main/v2/form');
-    // } else {
-    //     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    // }
 
     ?>
     <div class="container mx-auto mt-8">
