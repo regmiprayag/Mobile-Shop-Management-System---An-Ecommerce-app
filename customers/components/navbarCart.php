@@ -15,9 +15,9 @@
                     <a class="text-white text-xl font-bold hover:text-gray-300" href="#">Mobile Store</a>
                 </div>
                 <div class="hidden md:flex md:items-center md:space-x-4 gap-4">
-                    <a class="text-gray-300 hover:text-white" href="../customers/homepage.php">Home</a>
-                    <a class="text-gray-300 hover:text-white" href="../customers/mobiles.php">Mobiles</a>
-                    <a class="text-gray-300 hover:text-white" href="../customers/myorder.php">My Orders</a>
+                    <a class="text-gray-300 hover:text-white" href="../homepage.php">Home</a>
+                    <a class="text-gray-300 hover:text-white" href="../mobiles.php">Mobiles</a>
+                    <a class="text-gray-300 hover:text-white" href="../myorder.php">My Orders</a>
                     <div class="">
                         <?php
                             $isLoggedIn = isset($_SESSION['email']);

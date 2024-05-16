@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,8 +24,6 @@
     </head>
 
     <body class="bg-gray-100">
-        <!-- <div class="container mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-8"> -->
-
         <?php
         $id = $_GET['id'];
         // Connect to the database
@@ -85,12 +82,11 @@
                 // echo "Mobile product inserted successfully.";
                 $orderDetailsId = mysqli_insert_id($conn);
                 $_SESSION['orderDetailsId'] = $orderDetailsId;
-                header('location: esewa.php?amount='.$row['price']);
+                header('location: esewa.php?amount=' . $row['price']);
                 // header('location: https://rc-epay.esewa.com.np/api/epay/main/v2/form');
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-            
         }
         ?>
 
@@ -133,7 +129,6 @@
                 <!-- <button type=" submit" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600">Buy Now</button> -->
                 <!-- </form> -->
             </div>
-            <!-- </div> -->
 
             <div class="mx-20">
                 <div class="mx-auto bg-white p-8 rounded-lg shadow-md w-96">
@@ -209,7 +204,6 @@
         sessionStorage.setItem('address', addressInput.value);
         sessionStorage.setItem('city', cityInput.value);
         sessionStorage.setItem('phone', phoneInput.value);
-
     }
 
     // Add event listener to form submission

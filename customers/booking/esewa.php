@@ -8,11 +8,9 @@
 </head>
 
 <body>
-
-<?php
+    <?php
     $price = $_GET['amount'];
-?>
-
+    ?>
     <form method="post" id="shippingForm">
         <input type="hidden" id="amount" name="amount" value="<?php echo (int)$price; ?>" required>
         <input type="hidden" id="tax_amount" name="tax_amount" value="0" required>
@@ -26,7 +24,6 @@
         <input type="hidden" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required>
         <input type="hidden" id="signature" name="signature" required>
     </form>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1
 /crypto-js.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1
@@ -54,12 +51,7 @@
         if (hashInBase64) {
             myFunction();
         }
-
-        // console.log("hello prayag");
         let userDetails;
-
-        // let name = document.getElementById("full_name").value;
-        // console.log("Name= ",name);
 
         function storeFormData() {
             // Get form elements
@@ -85,7 +77,7 @@
         function myFunction() {
             var formElem = document.getElementById('shippingForm');
             formElem.setAttribute('action', 'https://rc-epay.esewa.com.np/api/epay/main/v2/form');
-                // console.log("The form elements are: ",formElem);
+            // console.log("The form elements are: ",formElem);
             formElem.submit();
         }
     </script>
@@ -93,7 +85,6 @@
     <script>
         // window.onload = function() {myFunction()};
     </script>
-
 </html>
 <!-- 
 <!DOCTYPE html>

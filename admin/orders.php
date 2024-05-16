@@ -73,7 +73,7 @@
                         <th class="px-4 py-2">Customer City</th>
                         <th class="px-4 py-2">Customer Phone</th>
                         <!-- <th class="px-4 py-2">Product ID</th> -->
-                        <th class="px-4 py-2">Product Model</th>
+                        <!-- <th class="px-4 py-2">Product Model</th> -->
                         <th class="px-4 py-2">Order Date</th>
                         <th class="px-4 py-2">Status</th>
                     </tr>
@@ -81,12 +81,7 @@
                 <tbody>
                     <!-- PHP code to fetch and display mobile products -->
                     <?php
-                    // Include database connection
-                    // include 'db_connection.php';
                     $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
-                    //    $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
-
-                    // Fetch all mobile products from the database
                     $sql = "SELECT * FROM orders";
                     $result = mysqli_query($conn, $sql);
 
@@ -99,7 +94,7 @@
                             echo '<td class="border px-4 py-2">' . $row["customer_city"] . "</td>";
                             echo '<td class="border px-4 py-2">' . $row["customer_phone"] . "</td>";
                             // echo '<td class="border px-4 py-2">' . $row["product_id"] . "</td>";
-                            echo '<td class="border px-4 py-2">' . $row["product_model"] . "</td>";
+                            // echo '<td class="border px-4 py-2">' . $row["product_model"] . "</td>";
                             // echo '<td class="border px-4 py-2">' . $row["order_date"] . "</td>";
                             echo '<td class="border px-4 py-2">' . date("Y-m-d", strtotime($row["order_date"])) . "</td>";
                             if($row['status'] == 'Pending'){
