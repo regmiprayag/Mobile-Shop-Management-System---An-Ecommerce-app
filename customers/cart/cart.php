@@ -32,6 +32,7 @@
     session_start();
     // Include database connection and header
     $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
+    $c_id = $_SESSION['customer_id'];
 
     // Check connection
     if (!$conn) {
@@ -45,7 +46,7 @@
     <div class="container mx-auto py-8">
         <h1 class="text-3xl font-semibold mb-4">Shopping Cart</h1>
         <div class="overflow-x-auto">
-            <form action="../booking/sooking.php" method="POST">
+            <form action="" method="POST">
                 <table class="w-full table-auto">
                     <thead>
                         <tr>
@@ -58,8 +59,12 @@
                     </thead>
                     <tbody>
                         <?php
+                         if(isset($_POST['submit'])){
+                            header("location: ../booking/sooking.php");
+                        }
+
                         // Fetch cart items from the database
-                        $sql = "SELECT * FROM cart";
+                        $sql = "SELECT * FROM cart WHERE customer_id = $c_id";
                         $result = mysqli_query($conn, $sql);
 
                         // Check if query execution was successful
@@ -112,12 +117,11 @@
                 <div class="mt-4 flex justify-end">
                     <strong>Total Price: $<span id="total-price"><?php echo $totalPrice; ?></span></strong>
                 </div>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4">Proceed to Payment</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4" name="submit">Proceed to Payment</button>
                 <!-- echo '<a href="booking/sooking.php?id=' . $row['id'] . ' "><button class="bg-blue-600 text-gray-100 px-6 w-32 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>'; -->
 
             </form>
         </div>
-
     </div>
 
     <?php

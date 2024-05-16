@@ -12,7 +12,7 @@
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <div>
-                    <a class="text-white text-xl font-bold hover:text-gray-300" href="#">Mobile Store</a>
+                    <a class="text-white text-xl font-bold hover:text-gray-300" href="../homepage.php">Nephew Mobile Store</a>
                 </div>
                 <div class="hidden md:flex md:items-center md:space-x-4 gap-4">
                     <a class="text-gray-300 hover:text-white" href="../homepage.php">Home</a>

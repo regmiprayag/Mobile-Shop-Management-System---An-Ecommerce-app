@@ -60,7 +60,7 @@
                 <span class="flex justify-center"><?php echo $errp ?></span>
             </form>
             <p class="text-center text-gray-600 text-sm mt-3">
-                Don't have an account? <a class="hover:underline text-blue-600" href="#">Sign Up</a>
+                Don't have an account? <a class="hover:underline text-blue-600" href="signup.php">Sign Up</a>
             </p>
         </div>
     </div>
