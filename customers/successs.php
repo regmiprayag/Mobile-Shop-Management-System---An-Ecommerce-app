@@ -48,10 +48,19 @@
         $customer_address = $row['customer_address'];
         $customer_city = $row['customer_city'];
         $customer_phone = $row['customer_phone'];
+        $customer_id = $row['customer_id'];
 
         // Construct the INSERT query for the orders table
         $insert_query = "INSERT INTO orders (customer_name, customer_address, customer_city, customer_phone, order_date)
                          VALUES ('$customer_name', '$customer_address', '$customer_city', '$customer_phone', CURRENT_TIMESTAMP)";
+        // $insert_myorder_query = "INSERT INTO myorder (customer_id, product_id, quantity, product_name)
+        // VALUES ('$customer_id', '$product_id', '$quantity', '$product_name')";
+
+        if (mysqli_query($conn, $insert_myorder_query)) {
+            echo "New record created successfully in myorder table.<br>";
+        } else {
+            echo "Error: " . $insert_myorder_query . "<br>" . mysqli_error($conn);
+        }
 
         // Execute the INSERT query
         if (mysqli_query($conn, $insert_query)) {

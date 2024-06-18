@@ -21,7 +21,6 @@
     <div class="flex justify-center m-8 text-3xl bg-white">All Mobiles </div>
     <div class="container mx-auto py-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-
             <?php
             // Connect to the database
             $conn = mysqli_connect('localhost', 'root', '', 'summerProject');

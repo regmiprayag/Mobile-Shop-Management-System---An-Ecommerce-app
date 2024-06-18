@@ -10,10 +10,10 @@
 
 <body>
     <?php
-    session_start();
-    $erre = $errp = '';
-    include 'components/navbar.php';
-    $customer_id = $_SESSION['customer_id'];
+        session_start();
+        $erre = $errp = '';
+        include 'components/navbar.php';
+        $customer_id = $_SESSION['customer_id'];
     ?>
     <div class="container mx-auto mt-8">
         <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -30,7 +30,7 @@
                     <?php
                     // Establish connection to database
                     $conn = mysqli_connect('localhost', 'root', '', 'summerProject');
-
+                    
                     // Check if connection was successful
                     if (!$conn) {
                         die("Connection failed: " . mysqli_connect_error());

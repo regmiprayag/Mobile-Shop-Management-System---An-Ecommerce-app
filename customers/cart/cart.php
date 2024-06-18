@@ -60,7 +60,41 @@
                     <tbody>
                         <?php
                          if(isset($_POST['submit'])){
-                            header("location: ../booking/sooking.php");
+                            // header("location: ../booking/sooking.php");
+                            // hey gpt, i want to insert the data of the cart in the newly created table new_order here.
+                                // Insert data into new_order table
+                                $sql = "SELECT * FROM cart WHERE customer_id = $c_id";
+                                $result = mysqli_query($conn, $sql);
+                            
+                                if (!$result) {
+                                    die("Query failed: " . mysqli_error($conn));
+                                }
+                            
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $productId = $row['product_id'];
+                                    $quantity = $row['quantity'];
+                            
+                                    $productSql = "SELECT * FROM mobile_product WHERE id = $productId";
+                                    $productResult = mysqli_query($conn, $productSql);
+                            
+                                    if (!$productResult) {
+                                        die("Product query failed: " . mysqli_error($conn));
+                                    }
+                            
+                                    $productRow = mysqli_fetch_assoc($productResult);
+                                    $mobileName = $productRow['model'];
+                                    $price = $productRow['price'];
+                            
+                                    // Insert into new_order table
+                                    $insertSql = "INSERT INTO new_order (mobile_name, quantity, price, customer_id) VALUES ('$mobileName', $quantity, $price, $c_id)";
+                                    if (!mysqli_query($conn, $insertSql)) {
+                                        die("Insert query failed: " . mysqli_error($conn));
+                                    }
+                                }
+                            
+                                // Redirect to the booking page
+                                header("Location: ../booking/sooking.php");
+                                exit;
                         }
 
                         // Fetch cart items from the database
@@ -97,8 +131,8 @@
                             echo "<tr>";
                             echo "<td class='border px-4 py-2'>" . $productRow['model'] . "</td>";
                             echo "<td class='border px-4 py-2'>$" . $productPrice . "</td>";
-                            echo "<td class='border px-4 py-2'><span class='quantity'>" . $quantity . "</span>";
-                            echo "<td class='border px-4 py-2'>$" . ($productPrice * $quantity) . "</td>";
+                            echo "<td class='border px-4 py-2'><span class='quantity'>" . $quantity . "</span></td>";
+                            echo "<td class='border px-4 py-2 total'>$" . ($productPrice * $quantity) . "</td>";
                             echo "<td class='border px-4 py-2'>";
                             echo "<button class='quantity-btn mx-2 subtract' data-type='subtract' data-id='" . $productId . "'>-</button>";
                             echo "<button class='quantity-btn add' data-type='add' data-id='" . $productId . "'>+</button>";
@@ -131,70 +165,38 @@
 
     <script>
         $(document).ready(function() {
-            $('.delete-btn').click(function() {
-                var productId = $(this).data('id');
-                $.ajax({
-                    url: 'delete_cart.php',
-                    method: 'POST',
-                    data: {
-                        id: productId
-                    },
-                    success: function(response) {
-                        // Handle success response
-                        console.log('Product deleted successfully');
-                        // Optionally update the UI to reflect changes
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error deleting product:', xhr.responseText);
-                        // Handle error response
-                    }
-                });
-            });
-        });
+            $(".quantity-btn").click(function(event) {
+                event.preventDefault();
 
-        $(document).ready(function() {
-            $(".quantity-btn").click(function() {
                 var type = $(this).data('type');
-                var productId = $(this).data('id');
                 var quantityElement = $(this).closest('tr').find('.quantity');
+                var totalElement = $(this).closest('tr').find('.total');
                 var currentQuantity = parseInt(quantityElement.text());
+                var productPrice = parseFloat($(this).closest('tr').find('td:nth-child(2)').text().replace('$', ''));
 
                 if (type === 'add') {
-                    // Increase quantity by 1
                     var newQuantity = currentQuantity + 1;
                 } else if (type === 'subtract' && currentQuantity > 1) {
-                    // Decrease quantity by 1 if quantity is greater than 1
                     var newQuantity = currentQuantity - 1;
                 } else {
-                    // Quantity should not be less than 1
                     alert("Quantity cannot be less than 1");
                     return;
                 }
 
-                // Update quantity in the database via AJAX
-                $.ajax({
-                    type: "POST",
-                    url: "update_cart.php",
-                    data: {
-                        productId: productId,
-                        quantity: newQuantity
-                    },
-                    success: function(response) {
-                        // Update quantity on the page
-                        quantityElement.text(newQuantity);
+                // Update quantity on the page
+                quantityElement.text(newQuantity);
 
-                        // Update total price
-                        var totalPrice = parseFloat($("#total-price").text());
-                        var productPrice = parseFloat(quantityElement.closest('tr').find('td:nth-child(2)').text().replace('$', ''));
-                        var totalPriceDiff = (newQuantity - currentQuantity) * productPrice;
-                        totalPrice += totalPriceDiff;
-                        $("#total-price").text(totalPrice.toFixed(2));
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                        alert("Error occurred while updating quantity. Please try again.");
-                    }
+                // Update total for the product
+                var newTotal = newQuantity * productPrice;
+                totalElement.text('$' + newTotal.toFixed(2));
+
+                // Update overall total price
+                var totalPriceElement = $("#total-price");
+                var totalPrice = 0;
+                $(".total").each(function() {
+                    totalPrice += parseFloat($(this).text().replace('$', ''));
                 });
+                totalPriceElement.text(totalPrice.toFixed(2));
             });
         });
     </script>
