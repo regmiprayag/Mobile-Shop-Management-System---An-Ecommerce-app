@@ -24,8 +24,8 @@
         <a href="orders.php">
           <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Orders</li>
         </a>
-        <a href="customer.php">
-          <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Customers</li>
+        <a href="sales.php">
+          <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Total Sales</li>
         </a>
         <!-- Add more sidebar links as needed -->
       </ul>
@@ -106,6 +106,10 @@
           <div class="mb-4">
             <label for="ram" class="block text-gray-700 font-bold mb-2">RAM:</label>
             <input type="number" id="ram" name="ram" class="border rounded w-full py-2 px-3" required>
+          </div>
+          <div class="mb-4">
+            <label for="quantity" class="block text-gray-700 font-bold mb-2">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" class="border rounded w-full py-2 px-3" required>
           </div>
           <div class="mb-4">
             <label for="image" class="block text-gray-700 font-bold mb-2">Image:</label>

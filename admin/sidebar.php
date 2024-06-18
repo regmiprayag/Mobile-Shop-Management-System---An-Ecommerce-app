@@ -21,7 +21,8 @@
             <li class="px-4 py-2 hover:bg-gray-700">Dashboard</li>
             <li class="px-4 py-2 hover:bg-gray-700">Products</li>
             <li class="px-4 py-2 hover:bg-gray-700">Orders</li>
-            <li class="px-4 py-2 hover:bg-gray-700">Customers</li>
+            <li class="px-4 py-2 hover:bg-gray-700">Quantity</li>
+            <li class="px-4 py-2 hover:bg-gray-700">Total Sales</li>
             <!-- Add more sidebar links as needed -->
         </ul>
         <div class="p-4 border-t border-gray-700">

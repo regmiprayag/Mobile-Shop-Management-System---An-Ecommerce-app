@@ -91,7 +91,6 @@
                                         die("Insert query failed: " . mysqli_error($conn));
                                     }
                                 }
-                            
                                 // Redirect to the booking page
                                 header("Location: ../booking/sooking.php");
                                 exit;

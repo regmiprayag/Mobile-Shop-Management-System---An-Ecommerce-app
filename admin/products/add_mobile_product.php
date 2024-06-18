@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $price = mysqli_real_escape_string($conn, $_POST['price']);
         $storage = mysqli_real_escape_string($conn, $_POST['storage']);
         $ram = mysqli_real_escape_string($conn, $_POST['ram']);
+        $quantity = mysqli_real_escape_string($conn, $_POST['quantity']);
         
         // File upload
         $targetDir = "uploads/";
@@ -29,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Upload file to server
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
                 // Insert mobile product into the database
-                $sql = "INSERT INTO mobile_product (model, brand, price, storage, ram, image) VALUES ('$model', '$brand', '$price', '$storage', '$ram', '$fileName')";
+                $sql = "INSERT INTO mobile_product (model, brand, price, storage, ram, quantity, image) VALUES ('$model', '$brand', '$price', '$storage', '$ram', '$quantity', '$fileName')";
                 if (mysqli_query($conn, $sql)) {
                     echo "Mobile product inserted successfully.";
                     header('location: ../homepage.php');
