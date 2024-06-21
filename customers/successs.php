@@ -56,12 +56,6 @@
         // $insert_myorder_query = "INSERT INTO myorder (customer_id, product_id, quantity, product_name)
         // VALUES ('$customer_id', '$product_id', '$quantity', '$product_name')";
 
-        if (mysqli_query($conn, $insert_myorder_query)) {
-            echo "New record created successfully in myorder table.<br>";
-        } else {
-            echo "Error: " . $insert_myorder_query . "<br>" . mysqli_error($conn);
-        }
-
         // Execute the INSERT query
         if (mysqli_query($conn, $insert_query)) {
             // New row inserted successfully, now delete the order details

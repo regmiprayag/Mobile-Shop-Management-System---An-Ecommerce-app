@@ -148,7 +148,10 @@
                     </tbody>
                 </table>
                 <div class="mt-4 flex justify-end">
-                    <strong>Total Price: $<span id="total-price"><?php echo $totalPrice; ?></span></strong>
+                    <strong>Total Price: $<span id="total-price"><?php 
+                        echo $totalPrice;
+                        $_SESSION['total_price'] = $totalPrice;
+                    ?></span></strong>
                 </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4" name="submit">Proceed to Payment</button>
                 <!-- echo '<a href="booking/sooking.php?id=' . $row['id'] . ' "><button class="bg-blue-600 text-gray-100 px-6 w-32 p-2 rounded-lg hover:bg-blue-800">Buy Now</button></a>'; -->

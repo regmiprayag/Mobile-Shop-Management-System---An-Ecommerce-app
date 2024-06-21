@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   <!-- <link href="./output.css" rel="stylesheet"> -->
 </head>
-<body class="">
+<body class="bg-black">
 <?php
         session_start();
         $erre=$errp='';

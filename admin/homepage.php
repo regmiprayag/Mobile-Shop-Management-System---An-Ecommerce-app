@@ -24,9 +24,6 @@
         <a href="orders.php">
           <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Orders</li>
         </a>
-        <a href="sales.php">
-          <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Total Sales</li>
-        </a>
         <!-- Add more sidebar links as needed -->
       </ul>
       <div class="p-4 border-t border-gray-700">

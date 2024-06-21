@@ -8,12 +8,14 @@
 </head>
 <body>
     <?php
+      session_start();
       $price = $_GET['amount'];
+      $total_price = $_SESSION['total_price'];
     ?>
     <form method="post" id="shippingForm">
         <input type="hidden" id="amount" name="amount" value="<?php echo (int)$price; ?>" required>
         <input type="hidden" id="tax_amount" name="tax_amount" value="0" required>
-        <input type="hidden" id="total_amount" name="total_amount" value="<?php echo (int)$price; ?>" required>
+        <input type="hidden" id="total_amount" name="total_amount" value="<?php echo (int)$total_price; ?>" required>
         <input type="hidden" id="transaction_uuid" name="transaction_uuid" required>
         <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required>
         <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" required>

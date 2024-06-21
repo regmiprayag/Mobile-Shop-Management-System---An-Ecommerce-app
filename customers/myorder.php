@@ -37,7 +37,7 @@
                     }
 
                     // Fetch data from myorder table
-                    $sql = "SELECT * FROM myorder WHERE customer_id = $customer_id";
+                    $sql = "SELECT * FROM new_order WHERE customer_id = $customer_id";
                     $result = mysqli_query($conn, $sql);
 
                     // Check if there are any rows returned
@@ -46,8 +46,8 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             // Display order details in table rows
                             echo "<tr>";
-                            echo "<td class='border px-4 py-2'>" . $row['myorder_id'] . "</td>";
-                            echo "<td class='border px-4 py-2'>" . $row['product_name'] . "</td>";
+                            echo "<td class='border px-4 py-2'>" . $row['id'] . "</td>";
+                            echo "<td class='border px-4 py-2'>" . $row['mobile_name'] . "</td>";
                             echo "<td class='border px-4 py-2'>" . $row['quantity'] . "</td>";
                             echo "</tr>";
                         }
